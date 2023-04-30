@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Sophie Bluel - Architecte d'intérieur</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./assets/style-connexion.css">
+	<script src="https://kit.fontawesome.com/4999bce5df.js" crossorigin="anonymous"></script>
+	<script type="module" src="connexionAuthentification.js"></script>
+</head>
+<body>
+<header>
+	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<nav>
+		<ul>
+			<li>projets</li>
+			<li>contact</li>
+			<li>login</li>
+			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+		</ul>
+	</nav>
+</header>
+<section id="connexion">
+    <h2>Log In</h2>
+        <form method="post" action="#" id="user-login">
+			<label for="e-mail">E-mail</label>
+			<input type="email" name="e-mail" id="e-mail">
+			<label for="password">Mot de passe</i></label>
+			<input type="password" name="password" id="password">
+            <input class="button-send" type="submit" value="Envoyer">
+            <p>Mot de passe oublié</p>
+        </form>
+</section>
+
+<aside id="modal-connexion">
+	<div class="modal-wrapper js-modal-stop">
+		<div id="js-modal-close"><i class="fa-regular fa-circle-xmark"></i></div>
+		<h2 id="title-modal">Erreur dans l’identifiant ou le mot de passe</h2>
+	</div>
+</aside>
+
+</div>
+</body>

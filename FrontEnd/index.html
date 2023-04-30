@@ -9,15 +9,26 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/4999bce5df.js" crossorigin="anonymous"></script>
+	<script type="module" src="EditWorksHomePage.js"></script>
+	<script type="module" src="EditWorksModal.js"></script>
+	<script type="module" src="addWorkModal.js"></script>
+
 </head>
 <body>
+	<div id="publish-changment">		
+		<i class="fa-regular fa-pen-to-square"></i>
+			<p>Mode édition</p>
+			<button id="publish">publier les changements</button>
+	</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<li id="js-login"><a href="index-connexion.html">login</a></li>
+			<li id="js-logout" style="display: none;">logout</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -26,6 +37,10 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<div class="modification-picture">
+				<i class="fa-regular fa-pen-to-square"></i>
+				<p>modifier</p>
+			</div>
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -35,52 +50,69 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="gallery">
-			<figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
+		<!--first modal --> 
+		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal" style="display: none;">
+			<div class="modal-wrapper js-modal-stop">
+				<div id="js-modal-close" class="css-close"><i class="fa-regular fa-circle-xmark"></i></div>
+				<h2 id="title-modal">Galerie Photo</h2>
+				<div class="sheets-modal">
+				</div>
+				<a href="#modal2" id="send-picture">Ajouter une photo</a> 
+				<p id="delete-galery">Supprimer la galerie</p>
+				</div>
+			</div>
+		</aside>
+		<div class="modification-project">
+			<h2>Mes Projets</h2>
+			<a href="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>
+			modifier</a>
+		</div>
+		<!--second modal-->
+		<aside id= "modal2" class="modal2" aria-hidden="true" role="dialog"  style="display: none">
+			<div class="modal-wrapper-2 js-modal-stop2">
+				<div id="js-modal2-close" class="css-close"><i class="fa-regular fa-circle-xmark"></i></div>
+				<h2 id="title-modal2">Ajout Photo</h2>
+				<div class="formulair-picture">
+					<form method="post" enctype="multipart/form-data" id="form-send-project">
+						<div class="send-picture-form">
+							<label for="add-picture">Image:</label>
+							<img id="preview-image" src="#" alt="Preview image" style="display: none">
+							<input type="file" id="add-picture" name="add-picture" style="display: none">
+							<div id="icon-send-picture"><i class="fa-regular fa-image"></i></div>
+							<button id="button-send-picture">+ Ajouter photo</button>
+							<p id="p-send-picture">jpg.png : 4 mo max</p>
+					  	</div>
+						<label for="title-picture">Titre:</label>
+						<input type="text" id="title-picture" name="title-picture"><br>
+					  
+						<label for="category">Catégorie:</label>
+						<select id="category" name="category">
+						  <option value="">--</option>		
+						  <option value="1">Objets</option>
+						  <option value="2">Appartements</option>
+						  <option value="3">Hôtels & Restaurants</option>
+						</select><br><br>
+						<p id="border"></p>
+						<aside id="modal-error-form" style="display: none">
+						<div id="modal-error-wrapper">
+							<div id="js-modal-error-close"><i class="fa-regular fa-circle-xmark"></i></div>
+							<p id="modal-error">Champ manquant dans le formulaire</p>
+						</div>
+						</aside>
+						<input type="submit" value="Valider" id="validate-btn">
+					</form>
+				</div>
+			</div>
+		</aside>
+		<!--end second modal-->
+		<h2 id="h2-projects">Mes Projets</h2>
+		<div class="filters-projects">
+			<button class="flt-all">Tous</button>
+			<button class="flt-object">Objets</button>
+			<button class="flt-apart">Appartements</button>
+			<button class="flt-hotel-restau">Hôtels & Restaurants</button>
+		</div>
+		<div class="sheets-projects">
 		</div>
 	</section>
 	<section id="contact">

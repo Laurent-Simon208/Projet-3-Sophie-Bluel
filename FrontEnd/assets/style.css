@@ -23,6 +23,281 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+input{
+	padding-left: 10px;
+}
+
+	/*ajout banière publication et modales*/
+		/*ajout des fenêtres "modifier" quand l'authentification est validée*/		
+#publish-changment{
+	background-color: black;
+	width: 100%;
+	height: 59px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px
+}
+#publish-changment p{
+	color: white;
+	font-size: 16px;
+}
+#publish-changment i{
+	color: white;
+}
+#publish{
+	padding: 5px 10px;
+	font-size: 14px;
+	border-radius: 15px 15px 15px 15px/ 15px 15px 15px 15px;
+}
+.modification-picture{
+	display: flex;
+	margin-left: 55px;
+	margin-top: 15px;
+	gap: 5px;
+}
+.modification-project{
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	justify-content: center;
+}
+.modification-project h2{
+	margin-right: 25px;
+}
+			/*ajout d'un pointer sur "logout"*/
+#js-logout:hover{
+	cursor: pointer;
+}
+		/*gesttion des modales*/
+			/*modification de lien*/
+.js-modal{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+			/*creation de la modale 1 et 2 et de l'arriere plan*/
+.modal, .modal2{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+.modal-wrapper, .modal-wrapper-2{
+	overflow: auto;
+	padding: 20px;
+	background-color: white;
+	height: 80%;
+	width: 50%;
+	border-radius: 2%;
+}
+			/*gestion des boutons pour fermer les modales*/
+.css-close{
+	width: 20px;
+	padding: 10px;
+	position: relative;
+	left: 94%;
+}
+.css-close .fa-regular{
+	font-size: 20px;
+	text-align: center;
+}
+.css-close:hover{
+	background-color: #1D6154;
+	color: white;
+}		
+			/*gestion des balises dans la première modale (modal1)*/
+.modal-wrapper{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.sheets-modal {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 10px;
+	border-bottom: 2px solid #B3B3B3;
+	width: 60%;
+	margin: 0 auto;
+	padding-bottom: 30px;
+}
+.sheets-modal img{
+	width: 90px;
+	height: 120px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+}
+/*gestion bouton corbeil*/
+.buttonBin{
+	width: 17px;
+	height:	17px;
+	position: relative;
+	bottom: 130px;
+	left: 68px;
+	background-color: black;
+	border: black solid 2px;
+	border-radius: 15%;
+}
+.buttonBin:hover{
+	cursor: pointer;
+}
+.buttonBin i{
+	color: white;
+	font-size: 8px;
+	position: relative;
+	bottom: 3.5px;
+	right: 2.8px;
+}
+/*gestion bouton ajouter une photo et supprimer la galerie*/
+#send-picture{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	border-radius: 60px ;
+	padding: 10px 40px;
+	margin: 0 auto;
+	text-decoration: none;
+}
+
+#delete-galery{
+	color: red;
+	margin: 0 auto;
+}
+			/*gestion des balises dans la deuxième modale (modal2)*/
+
+#form-send-project{
+	width: 60%;
+}
+.css-close{
+	width: 20px;
+	padding: 10px;
+	position: relative;
+	left: 94%;
+}
+.css-close .fa-regular{
+	font-size: 20px;
+	text-align: center;
+}
+.css-close:hover{
+	background-color: #1D6154;
+	color: white;
+}
+.modal-wrapper-2 form{
+	width: 80%;
+	margin-bottom: 20px;	
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+}
+.modal-wrapper-2 form input{
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.modal-wrapper-2 form select{
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.modal-wrapper-2 form label{
+	margin: 2em 0 1em 0;
+}
+.send-picture-form{
+	background-color: #E8F1F6;
+	;
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 10px;
+	padding: 20px 0;
+}
+#button-send-picture{
+	background-color: #CBD6DC;
+	color: blue;
+	border: #E8F1F6 solid 1px;
+	border-radius: 10% 10% 10% 10% / 40% 40% 40% 40%;
+	width: 173px;
+	margin: 0 auto;
+	padding: 5px 20px;
+}
+.send-picture-form label{
+	display: none;
+}
+.send-picture-form .fa-regular{
+	font-size: 50px;
+}
+.send-picture-form p{
+	font-size: 10px;
+}
+#preview-image{
+	width: 129px;
+	height: 193px;
+	margin: 0 auto;
+}
+#title-modal{
+	color: black;
+	margin: 0 auto;
+}
+#border{
+	border-top: #B3B3B3 1px solid;
+	margin-top: 15px;
+}
+#title-modal2{
+	color: black;
+}
+#validate-btn{
+	background-color: #B3B3B3;
+}
+/*gestion de la modale d'erreur au remplissage du formulaire d'ajout de photo*/
+#modal-error-form{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+#modal-error-wrapper{
+	width: 50%;
+	padding: 0px 20px 20px 20px;
+	background-color: white;
+}
+#modal-error{
+	text-align: center;
+	font-size: 15px;
+	color: red;
+}
+#js-modal-error-close{
+	width: 15px;
+	text-align: center;
+	padding: 3px;
+	position: relative;
+	left: 99%;
+}
+#js-modal-error-close:hover{
+	color: white;
+	background-color: black;
+}
+
+
+		/*fin ajout publication et modale*/
+
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -45,6 +320,10 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+header li a{
+	text-decoration: none;
+	color: black;
 }
 /** end reset css**/
 body {
@@ -125,13 +404,53 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
-.gallery {
+			/*gestion des boutons de filtres*/
+.filters-projects{
+	margin-bottom: 40px;
+	text-align: center;
+}
+.filters-projects button{
+	border: 2px solid #1D6154;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #1D6154;
+	margin-right: 10px;	
+}
+.flt-all{
+	border-radius: 20% 20% 20% 20% / 50% 50% 50% 50%;
+	width: 100px;
+}
+.flt-object{
+	width: 100px;
+	border-radius: 20% 20% 20% 20% / 50% 50% 50% 50%;
+}
+.flt-apart{
+	width: 128px;
+	border-radius: 15% 15% 15% 15% / 50% 50% 50% 50%;
+}
+.flt-hotel-restau{
+	width: 198px;
+	border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+}
+.filters-projects button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+			/*affichage des projets dans la page d'acceuil*/
+.sheets-projects {
 	width: 100%;
+	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
+.sheets-projects article img{
+	width: 100%;
+	height: 450px;
+}
+
 
 .gallery img {
 	width: 100%;
@@ -163,10 +482,6 @@ margin: auto;
 }
 #contact label {
 	margin: 2em 0 1em 0;
-}
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 input[type="submit"]{
