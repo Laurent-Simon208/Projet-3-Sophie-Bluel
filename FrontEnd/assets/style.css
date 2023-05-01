@@ -135,7 +135,10 @@ input{
 /*gestion bouton corbeil*/
 .buttonBin{
 	width: 17px;
-	height:	17px;
+	height: 17px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: relative;
 	bottom: 130px;
 	left: 68px;
@@ -148,10 +151,7 @@ input{
 }
 .buttonBin i{
 	color: white;
-	font-size: 8px;
-	position: relative;
-	bottom: 3.5px;
-	right: 2.8px;
+	font-size: 0.8em;
 }
 /*gestion bouton ajouter une photo et supprimer la galerie*/
 #send-picture{
@@ -179,6 +179,7 @@ input{
 	padding: 10px;
 	position: relative;
 	left: 94%;
+	cursor: pointer;
 }
 .css-close .fa-regular{
 	font-size: 20px;
@@ -231,6 +232,7 @@ input{
 	width: 173px;
 	margin: 0 auto;
 	padding: 5px 20px;
+	cursor: pointer;
 }
 .send-picture-form label{
 	display: none;
@@ -259,42 +261,13 @@ input{
 }
 #validate-btn{
 	background-color: #B3B3B3;
+	cursor: pointer;
 }
 /*gestion de la modale d'erreur au remplissage du formulaire d'ajout de photo*/
-#modal-error-form{
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
-}
-#modal-error-wrapper{
-	width: 50%;
-	padding: 0px 20px 20px 20px;
-	background-color: white;
-}
 #modal-error{
+	border: 1px red solid;
 	text-align: center;
-	font-size: 15px;
-	color: red;
 }
-#js-modal-error-close{
-	width: 15px;
-	text-align: center;
-	padding: 3px;
-	position: relative;
-	left: 99%;
-}
-#js-modal-error-close:hover{
-	color: white;
-	background-color: black;
-}
-
-
 		/*fin ajout publication et modale*/
 
 
