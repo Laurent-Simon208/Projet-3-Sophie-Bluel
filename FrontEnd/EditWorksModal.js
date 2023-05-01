@@ -63,10 +63,10 @@ document.querySelectorAll(".js-modal").forEach((a) => {
   a.addEventListener("click", openModal);
 });
 
-
+/**récupération des projets depuis l'api*/
 const worksModal = await fetch("http://localhost:5678/api/works");
 const projectsModal = await worksModal.json();
-
+/**génération de l'affichage des projets dans la modale */
 function generateProjectsModal(projectsModal) {
   for (let i = 0; i < projectsModal.length; i++) {
     const articleMod = projectsModal[i];
@@ -88,9 +88,9 @@ function generateProjectsModal(projectsModal) {
     cardElement.appendChild(legendCard);
     cardElement.appendChild(deleteCard);
     deleteCard.appendChild(icon);
-
+    /**récupération de l'id des articles */
     const dataIdMod = articleMod.id;
-
+    /**suppression dans l'api */
     function deleteProject(dataIdMod) {
       fetch(`http://localhost:5678/api/works/${dataIdMod}`, {
         method: "delete",
@@ -111,7 +111,7 @@ function generateProjectsModal(projectsModal) {
           );
         });
     }
-
+    /**suppression dans le dom */
     deleteCard.addEventListener("click", function () {
       deleteProject(dataIdMod);
       console.log(dataIdMod);
@@ -127,4 +127,5 @@ function generateProjectsModal(projectsModal) {
     });
   }
 }
+/**appel de la fonction */
 generateProjectsModal(projectsModal);
