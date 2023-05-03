@@ -66,6 +66,28 @@ document.querySelectorAll(".js-modal").forEach((a) => {
 /**récupération des projets depuis l'api*/
 const worksModal = await fetch("http://localhost:5678/api/works");
 const projectsModal = await worksModal.json();
+
+/**suppression dans l'api */
+export function deleteProject(dataIdMod) {
+  fetch(`http://localhost:5678/api/works/${dataIdMod}`, {
+    method: "delete",
+    headers: {
+      authorization: `Bearer ${tokenVerification}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log(`Le projet ${dataIdMod} a été supprimé avec succès.`);
+      } else {
+        console.error(`La suppression du projet ${dataIdMod} a échoué`);
+      }
+    })
+    .catch((error) => {
+      console.error(
+        `Une erreur s'est produite lors de la suppression du projet ${dataIdMod}`
+      );
+    });
+}
 /**génération de l'affichage des projets dans la modale */
 function generateProjectsModal(projectsModal) {
   for (let i = 0; i < projectsModal.length; i++) {
@@ -88,30 +110,11 @@ function generateProjectsModal(projectsModal) {
     cardElement.appendChild(legendCard);
     cardElement.appendChild(deleteCard);
     deleteCard.appendChild(icon);
+    
     /**récupération de l'id des articles */
     const dataIdMod = articleMod.id;
-    /**suppression dans l'api */
-    function deleteProject(dataIdMod) {
-      fetch(`http://localhost:5678/api/works/${dataIdMod}`, {
-        method: "delete",
-        headers: {
-          authorization: `Bearer ${tokenVerification}`,
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log(`Le projet ${dataIdMod} a été supprimé avec succès.`);
-          } else {
-            console.error(`La suppression du projet ${dataIdMod} a échoué`);
-          }
-        })
-        .catch((error) => {
-          console.error(
-            `Une erreur s'est produite lors de la suppression du projet ${dataIdMod}`
-          );
-        });
-    }
-    /**suppression dans le dom */
+
+    /**lecteur d'événement afin de supprimer le projet dans le dom et l'api en appuyant sur la corbeille */
     deleteCard.addEventListener("click", function () {
       deleteProject(dataIdMod);
       console.log(dataIdMod);

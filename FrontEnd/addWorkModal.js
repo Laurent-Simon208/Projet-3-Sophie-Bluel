@@ -1,4 +1,6 @@
 const tokenVerification = localStorage.getItem("token");
+/**importation de la fonction de suppression dans l'api */
+import { deleteProject } from "./EditWorksModal.js";
 
 let modal = null;
 /**fonction pour ouvrir la modale */
@@ -59,6 +61,7 @@ const resetForm = function () {
   validateBtn.style.backgroundColor = "#B3B3B3";
 };
 
+/**déclaration des constante utiles pour la suite */
 const formSendProject = document.querySelector("#form-send-project");
 const addPicture = document.querySelector("#add-picture");
 const titlePicture = document.querySelector("#title-picture");
@@ -105,12 +108,9 @@ const previewImage = document.querySelector("#preview-image");
 addPicture.addEventListener("change", function () {
   const file = this.files[0];
   const reader = new FileReader();
-  reader.addEventListener(
-    "load",
-    function () {
-      previewImage.src = reader.result;
-    }
-  );
+  reader.addEventListener("load", function () {
+    previewImage.src = reader.result;
+  });
   if (file) {
     previewImage.style.display = null;
     iconSendPicture.style.display = "none";
@@ -120,12 +120,64 @@ addPicture.addEventListener("change", function () {
   }
 });
 
-/**ajout du message d'erreur pour le remplissage des champs */
+/**ajout du message d'erreur pour le remplissage des champs du formulaire*/
 const modalErrorMessage = document.querySelector("#modal-error");
 function errorMessage() {
   modalErrorMessage.style.display = null;
 }
 
+/**ajout du projet dans le dom de EditWorksHomePage */
+function addProjectWork(data) {
+  const filesSection = document.querySelector(".sheets-projects");
+
+  const projectElement = document.createElement("article");
+  projectElement.setAttribute("data-id", data.id);
+  const pictureElement = document.createElement("img");
+  pictureElement.src = data.imageUrl;
+
+  const nameElement = document.createElement("p");
+  nameElement.innerText = data.title;
+
+  filesSection.appendChild(projectElement);
+  projectElement.appendChild(pictureElement);
+  projectElement.appendChild(nameElement);
+}
+
+/**ajout du projet dans le dom de EditWorksModal */
+function addProjectModal(data) {
+  const filesSectionMod = document.querySelector(".sheets-modal");
+  const cardElement = document.createElement("article");
+  cardElement.setAttribute("card-element-data-id", data.id);
+  const legendCard = document.createElement("p");
+  legendCard.innerText = "éditer";
+  const pictureCard = document.createElement("img");
+  pictureCard.src = data.imageUrl;
+  const deleteCard = document.createElement("button");
+  deleteCard.classList.add("buttonBin");
+
+  const icon = document.createElement("i");
+  icon.classList.add("fa-solid", "fa-trash-can");
+
+  filesSectionMod.appendChild(cardElement);
+  cardElement.appendChild(pictureCard);
+  cardElement.appendChild(legendCard);
+  cardElement.appendChild(deleteCard);
+  deleteCard.appendChild(icon);
+
+  deleteCard.addEventListener("click", function () {
+    deleteProject(data.id);
+    console.log(data.id);
+    const projectElementDelete = document.querySelector(
+      `[data-id="${data.id}"]`
+    );
+    const cardElementDelete = document.querySelector(
+      `[card-element-data-id="${data.id}"]`
+    );
+    projectElementDelete.remove();
+    cardElementDelete.remove();
+    console.log(projectElementDelete, cardElementDelete);
+  });
+}
 /**ajout de nouveau projets */
 /**création d'une instance d'objet FormData */
 formSendProject.addEventListener("submit", function (e) {
@@ -164,46 +216,8 @@ formSendProject.addEventListener("submit", function (e) {
         textSendPicure.style.display = null;
         console.log(data.imageUrl);
 
-        /**ajout du projet dans le dom de EditWorksModal */
-        function addProjectWork(data) {
-          const filesSection = document.querySelector(".sheets-projects");
-
-          const projectElement = document.createElement("article");
-
-          const pictureElement = document.createElement("img");
-          pictureElement.src = data.imageUrl;
-
-          const nameElement = document.createElement("p");
-          nameElement.innerText = data.title;
-
-          filesSection.appendChild(projectElement);
-          projectElement.appendChild(pictureElement);
-          projectElement.appendChild(nameElement);
-        }
-        /**ajout du projet dans le dom de EditWorksHomePage */
-        function addProjectModal(data) {
-          const filesSectionMod = document.querySelector(".sheets-modal");
-          const cardElement = document.createElement("article");
-
-          const legendCard = document.createElement("p");
-          legendCard.innerText = "éditer";
-          const pictureCard = document.createElement("img");
-          pictureCard.src = data.imageUrl;
-          const deleteCard = document.createElement("button");
-          deleteCard.classList.add("buttonBin");
-
-          const icon = document.createElement("i");
-          icon.classList.add("fa-solid", "fa-trash-can");
-
-          filesSectionMod.appendChild(cardElement);
-          cardElement.appendChild(pictureCard);
-          cardElement.appendChild(legendCard);
-          cardElement.appendChild(deleteCard);
-          deleteCard.appendChild(icon);
-        }
         addProjectModal(data);
         addProjectWork(data);
-        /**retour à la première modale */
         closeModalAfterAddPicture();
       })
       .catch((error) => {});
