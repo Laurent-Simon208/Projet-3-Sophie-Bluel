@@ -24,43 +24,35 @@ userLogin.addEventListener("submit", async function (e) {
   e.preventDefault();
   const mailLogin = e.target.querySelector("#e-mail").value;
   const passwordLogin = e.target.querySelector("#password").value;
-  /**je me suis rendu compte que dans le formulaire il s'agissait d'un type "email" il demande donc déjà la présence d'un "@"
-   * dans le contexte de Sophie bluel l'adresse mail est un ".tdl" j'ai rajouter ces lignes pour vérifier si ".tdl" est inclu dans l'adresse mail
-   * si ce n'est pas le cas la modale s'ouvre sans passer par l'api
-   */
-  if (!mailLogin.includes(".tdl")) {
-    openModal();
-    return;
-  }
-  /**création d'un objet avec les information du formulaire */
-  const loginBody = {
-    email: mailLogin,
-    password: passwordLogin,
-  };
-  const payLoad = JSON.stringify(loginBody);
-  /**utilisation de l'objet pour envoyer une requête POST à l'api */
-  fetch("http://localhost:5678/api/users/login", {
-    method: "POST",
-    body: payLoad,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  /**gestion de la reponse envoyée par l'api */
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();     
-      } else {
-        openModal();
-        throw new Error("Response not ok");
-      }
+  /**Lors de notre discussion je n'ai pas précisé que dans le formulaire il s'agissait d'un type "email" il demande donc déjà la présence d'un "@"*/
+    const loginBody = {
+      email: mailLogin,
+      password: passwordLogin,
+    };
+    const payLoad = JSON.stringify(loginBody);
+    /**utilisation de l'objet pour envoyer une requête POST à l'api */
+    fetch("http://localhost:5678/api/users/login", {
+      method: "POST",
+      body: payLoad,
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .then(function (data) {
-      /**si la réponse de la requête est positive récupération et stockage du token dans le localstorage */
-      localStorage.setItem("token", data.token);
-      window.location.href = "index.html";
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+      /**gestion de la reponse envoyée par l'api */
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          openModal();
+          throw new Error("Response not ok");
+        }
+      })
+      .then(function (data) {
+        /**si la réponse de la requête est positive récupération et stockage du token dans le localstorage */
+        localStorage.setItem("token", data.token);
+        window.location.href = "index.html";
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
 });
