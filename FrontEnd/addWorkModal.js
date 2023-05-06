@@ -71,34 +71,25 @@ const iconSendPicture = document.querySelector("#icon-send-picture");
 const textSendPicure = document.querySelector("#p-send-picture");
 const validateBtn = document.querySelector("#validate-btn");
 
-/**ajout d'événements pour le que le bouton devienne vert */
-titlePicture.addEventListener("change", function () {
+/**changement de couleur nouvelle version
+ * création d'une fonction avec condition pour varier entre les deux couleurs 
+ */
+function changeColorButton (){
   if (
     titlePicture.value != "" &&
     addPicture.files.length > 0 &&
     categoryPicture.value != ""
   ) {
     validateBtn.style.backgroundColor = "#1D6154";
+  }else{
+    validateBtn.style.backgroundColor = "#B3B3B3";
   }
-});
-addPicture.addEventListener("change", function () {
-  if (
-    titlePicture.value != "" &&
-    addPicture.files.length > 0 &&
-    categoryPicture.value != ""
-  ) {
-    validateBtn.style.backgroundColor = "#1D6154";
-  }
-});
-categoryPicture.addEventListener("change", function () {
-  if (
-    titlePicture.value != "" &&
-    addPicture.files.length > 0 &&
-    categoryPicture.value != ""
-  ) {
-    validateBtn.style.backgroundColor = "#1D6154";
-  }
-});
+};
+/**ajout d'evenement "input" à chaque champ du formulaire pour alleger le code */
+titlePicture.addEventListener("input", changeColorButton);
+addPicture.addEventListener("input", changeColorButton);
+categoryPicture.addEventListener("input", changeColorButton);
+
 /**ajout de la prévisualisation de l'image à ajouter */
 buttonAddPicture.addEventListener("click", function (e) {
   e.preventDefault();

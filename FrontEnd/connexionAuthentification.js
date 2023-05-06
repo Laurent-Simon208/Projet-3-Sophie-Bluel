@@ -24,6 +24,14 @@ userLogin.addEventListener("submit", async function (e) {
   e.preventDefault();
   const mailLogin = e.target.querySelector("#e-mail").value;
   const passwordLogin = e.target.querySelector("#password").value;
+  /**je me suis rendu compte que dans le formulaire il s'agissait d'un type "email" il demande donc déjà la présence d'un "@"
+   * dans le contexte de Sophie bluel l'adresse mail est un ".tdl" j'ai rajouter ces lignes pour vérifier si ".tdl" est inclu dans l'adresse mail
+   * si ce n'est pas le cas la modale s'ouvre sans passer par l'api
+   */
+  if (!mailLogin.includes(".tdl")) {
+    openModal();
+    return;
+  }
   /**création d'un objet avec les information du formulaire */
   const loginBody = {
     email: mailLogin,
